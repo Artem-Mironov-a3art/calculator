@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Diagnostics.Metrics;
 using CalculatorLibrary;
-
 namespace CalculatorProgram
 {
 
@@ -27,7 +25,6 @@ namespace CalculatorProgram
                 while (!double.TryParse(numInput1, out cleanNum1))
                 {
                     Console.Write("This is not valid input. Please enter an integer value: ");
-                   
                     numInput1 = Console.ReadLine();
                 }
                 // Ask the user to type the second number.
@@ -36,8 +33,7 @@ namespace CalculatorProgram
                 double cleanNum2 = 0;
                 while (!double.TryParse(numInput2, out cleanNum2))
                 {
-                    Console.Write("This is not valid input. Please enter an integervalue: ");
-                   
+                    Console.Write("This is not valid input. Please enter an integer value: ");
                     numInput2 = Console.ReadLine();
                 }
                 // Ask the user to choose an operator.
@@ -53,20 +49,21 @@ namespace CalculatorProgram
                     result = calculator.DoOperation(cleanNum1, cleanNum2, op);
                     if (double.IsNaN(result))
                     {
-                        Console.WriteLine("This operation will result in amathematical error.\n");
+                        Console.WriteLine("This operation will result in a mathematical error.\n");
                     }
                     else Console.WriteLine("Your result: {0:0.##}\n", result);
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Oh no! An exception occurred trying to do themath.\n - Details: " + e.Message);
+                    Console.WriteLine("Oh no! An exception occurred trying to do the math.\n - Details: " + e.Message);
                 }
                 Console.WriteLine("------------------------\n");
                 // Wait for the user to respond before closing.
-                Console.Write("Press 'n' and Enter to close the app, or press anyother key and Enter to continue: ");
+                Console.Write("Press 'n' and Enter to close the app, or press any other key and Enter to continue: ");
             if (Console.ReadLine() == "n") endApp = true;
                 Console.WriteLine("\n"); // Friendly linespacing.
             }
+            calculator.Finish();
             return;
         }
     }
